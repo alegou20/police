@@ -1,19 +1,23 @@
 <template>
     <v-app id="inspire">
         <v-navigation-drawer
+                permanent
                 v-model="drawer"
                 :clipped="$vuetify.breakpoint.lgAndUp"
                 fixed
-                app
+                app                width="400px"
+
+
         >
            <licenseplates></licenseplates>
-            <vehicle></vehicle>
         </v-navigation-drawer>
+
         <v-toolbar
                 :clipped-left="$vuetify.breakpoint.lgAndUp"
                 color="white"
                 app
                 fixed
+                flat
         >
             <img  class="politieimage" :src="image"/>
 
@@ -39,12 +43,10 @@
     import image from '@/assets/politie-logo.png'
     import logo from '@/assets/logo.png'
     import licenseplates from '@/components/Vehicle/licensePlates'
-    import vehicle from '@/components/Vehicle/Vehicle'
 
         export default {
         components: {
             licenseplates,
-            vehicle
         },
         data: () => ({
             dialog: false,

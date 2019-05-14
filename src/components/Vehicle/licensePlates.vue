@@ -2,17 +2,17 @@
     <v-layout>
         <v-flex >
             <v-card width="100%">
-                <v-toolbar color="white">
+                <v-toolbar color="white" flat>
                     <v-toolbar-title color="primary"><strong class="indigo--text text--darken-3">License plates</strong></v-toolbar-title>
 
                 </v-toolbar>
 
                 <v-list class="LicenseplateList">
 
-                    <template v-for="item in items">
+                    <template v-for="(item, index) in items">
 
                         <v-list-tile
-                                :key="item"
+                                :key="item + index"
                                 @click="setLicensePlate(item)"
                                 :class="{'active': item === licenseplate}"
 
@@ -23,37 +23,78 @@
                 </v-list>
             </v-card>
 
-            <div class="betweenCards">
 
-            <v-card width="100%" height="51%">
-                <v-img
-                        src="https://res.cloudinary.com/dptzuo0ky/image/upload/v1557454552/tang1_car.png"
-                        aspect-ratio="2.75"
-                        height="71%"
-                ></v-img>
+                <vehicle v-if="vehicle" :vehicle="vehicle"></vehicle>
 
-                <v-card-title primary-title>
-                    <div>
-                        <h3 class="headline mb-0">99-BB-45</h3>
-                    </div>
-                </v-card-title>
-
-                <v-card-actions>
-                    <v-btn flat color="orange">Do something</v-btn>
-                    <v-btn flat color="orange">Save</v-btn>
-                </v-card-actions>
-            </v-card>
-            </div>
         </v-flex>
     </v-layout>
 </template>
 
 <script>
+    import vehicle from '@/components/Vehicle/vehicle.vue'
+
     export default {
+        components: {
+            vehicle,
+        },
         data () {
             return {
                 licenseplate: '',
-                items: []
+                items: [],
+                vehicle: {
+                    "carTracker":{
+                        "deleted":false,
+                        "hardware":"asdas",
+                        "id":19,
+                        "mileage":0
+                    },
+                    "carTrackers":[
+                        {
+                            "deleted":false,
+                            "hardware":"123",
+                            "id":2,
+                            "mileage":0
+                        },
+                        {
+                            "deleted":false,
+                            "hardware":"i5",
+                            "id":8,
+                            "mileage":0
+                        },
+                        {
+                            "deleted":false,
+                            "hardware":"asdas",
+                            "id":19,
+                            "mileage":0
+                        }
+                    ],
+                    "id":9,
+                    "licencePlate":"xxxxx4",
+                    "ownerCredentials":[
+                        {
+                            "accountRider":false,
+                            "address":"tyest 1, 5709MB, Helmond",
+                            "begin":"2019-04-17T12:14:42.278Z[UTC]",
+                            "beginFormatted":"2019-04-17 02:14:42",
+                            "city":"Helmond",
+                            "endFormatted":"2019-04-17 02:14:42",
+                            "houseNumber":1,
+                            "id":12,
+                            "name":"Sander Hooff",
+                            "postalCode":"5709MB",
+                            "streetName":"tyest"
+                        }
+                    ],
+                    "rateCategory":{
+                        "id":1,
+                        "name":"45",
+                        "price":3.0,
+                        "vehicles":[
+
+                        ]
+                    },
+                    "stolen":false
+                }
             }
         },
         mounted(){
@@ -62,7 +103,8 @@
         methods:{
             getStolenVehicle(){
                 if(this.licenseplate){
-                    this.$store.dispatch("getStolenVehicle", {licensePlate: this.licensePlate})
+                    // this.vehicle = this.$store.dispatch("getStolenVehicle", {licensePlate: this.licensePlate}
+                    return this.vehicle;
                 }
                 else{
                     alert('no licenseplate selected')
@@ -91,10 +133,6 @@
     .LicenseplateList{
         height: 300px;
         overflow-y: auto;
-    }
-
-    .betweenCards{
-        margin-top: 90px;
     }
 
 </style>

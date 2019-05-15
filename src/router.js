@@ -1,34 +1,35 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import OwnerCredentials from '@/views/OwnerCredentials'
-import markAsStolen from '@/components/Vehicle/markAsStolen'
-import kaart from '@/components/Vehicle/kaart'
-import licensePlates from '@/components/Vehicle/licensePlates'
+// import Vue from 'vue'
+// import Router from 'vue-router'
+// import OwnerCredentials from '@/views/OwnerCredentials'
+// import markAsStolen from '@/components/Vehicle/markAsStolen'
+// import kaart from '@/components/Vehicle/kaart'
+// import MapboxMap from '@/components/Vehicle/MapboxMap'
+// import licensePlates from '@/components/Vehicle/licensePlates'
 
-Vue.use(Router)
+// Vue.use(Router)
 
-export default new Router({
-  routes: [
-    {
-      path: '/licensePlates',
-      name: 'licensePlates',
-      component: licensePlates
-    },
-    {
-      path: '/',
-      name: 'kaart',
-      component: kaart
-    },
+// export default new Router({
+//   routes: [
+//     {
+//       path: '/licensePlates',
+//       name: 'licensePlates',
+//       component: licensePlates
+//     },
+//     {
+//       path: '/',
+//       name: 'kaart',
+//       component: MapboxMap
+//     },
 
-    {
-      path: '/vehicles/markAsStolen',
-      name: 'markAsStolen',
-      component: markAsStolen
-    },
-    {
-      path: '/owner-credentials',
-      name: 'ownercredentials',
-      component: OwnerCredentials
-    },
-  ]
-})
+//     {
+//       path: '/vehicles/markAsStolen',
+//       name: 'markAsStolen',
+//       component: markAsStolen
+//     },
+//     {
+//       path: '/owner-credentials',
+//       name: 'ownercredentials',
+//       component: OwnerCredentials
+//     },
+//   ]
+// })

@@ -10,6 +10,8 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
+    "@mapbox/mapbox-gl-directions": "^4.0.0",
+    "@mapbox/mapbox-gl-geocoder": "^4.3.0",
     "axios": "^0.18.0",
     "mapbox-gl": "^0.54.0",
     "mapbox-gl-vue": "^1.9.0",

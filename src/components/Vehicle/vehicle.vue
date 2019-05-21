@@ -10,10 +10,7 @@
         <v-layout row wrap>
           <v-flex xs6>Licence plate</v-flex>
           <v-flex xs6>{{vehicle.licencePlate}}</v-flex>
-          <!--<v-flex xs12 md6>-->
-          <!--<rate-category class="mt-4 ml-4" v-if="vehicle.rateCategory" :rc="vehicle.rateCategory"></rate-category>-->
-          <!--</v-flex>-->
-          <v-flex xs12 md6>
+          <!-- <v-flex xs12 md6>
             <v-tabs v-model="activeCarTracker" color="primary" dark slider-color="warning">
               <v-tab
                 v-for="(carTracker, index) in vehicle.carTrackers"
@@ -27,8 +24,8 @@
                 <car-tracker class="mt-2 ml-4" v-if="carTracker" :car-tracker="carTracker"></car-tracker>
               </v-tab-item>
             </v-tabs>
-          </v-flex>
-          <v-flex xs12 md6>
+          </v-flex>-->
+          <v-flex xs12>
             <v-tabs v-model="activeOwnerCredential" color="primary" dark slider-color="warning">
               <v-tab
                 v-for="(ownerCredential, index) in vehicle.ownerCredentials"

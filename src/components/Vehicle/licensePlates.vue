@@ -1,31 +1,29 @@
 <template>
-  <v-layout>
-    <v-flex>
-      <v-card width="100%">
-        <v-toolbar color="white" flat>
-          <v-toolbar-title color="primary">
-            <strong class="indigo--text text--darken-3">License plates</strong>
-          </v-toolbar-title>
-        </v-toolbar>
+  <div class="fillheight">
+    <v-card class="fillheight card">
+      <v-toolbar color="white" flat>
+        <v-toolbar-title color="primary">
+          <strong class="indigo--text text--darken-3">License plates</strong>
+        </v-toolbar-title>
+      </v-toolbar>
 
-        <v-list class="LicenseplateList">
-          <template v-for="(item, index) in items">
-            <v-list-tile
-              :key="item + index"
-              @click="setLicensePlate(item)"
-              :class="{'active': item === licenseplate}"
-            >
-              <v-list-tile-content>
-                <strong class="indigo--text text--darken-3">{{ item }}</strong>
-              </v-list-tile-content>
-            </v-list-tile>
-          </template>
-        </v-list>
-      </v-card>
+      <v-list class="LicenseplateList">
+        <template v-for="(item, index) in items">
+          <v-list-tile
+            :key="item + index"
+            @click="setLicensePlate(item)"
+            :class="{'active': item === licenseplate}"
+          >
+            <v-list-tile-content>
+              <strong class="indigo--text text--darken-3">{{ item }}</strong>
+            </v-list-tile-content>
+          </v-list-tile>
+        </template>
+      </v-list>
 
       <vehicle v-if="vehicle" :vehicle="vehicle"></vehicle>
-    </v-flex>
-  </v-layout>
+    </v-card>
+  </div>
 </template>
 
 <script>
@@ -126,6 +124,10 @@ export default {
 
 .LicenseplateList {
   height: 200px;
+  overflow-y: auto;
+}
+
+.card {
   overflow-y: auto;
 }
 </style>

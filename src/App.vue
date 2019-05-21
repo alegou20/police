@@ -1,6 +1,6 @@
 <template>
   <v-app id="inspire">
-    <v-toolbar :clipped-left="$vuetify.breakpoint.lgAndUp" color="white" app fixed flat>
+    <v-toolbar color="white" app flat>
       <img class="politieimage" :src="image">
 
       <v-spacer></v-spacer>
@@ -13,29 +13,16 @@
       <img class="politielogo" :src="logo">
     </v-toolbar>
 
-    <v-layout>
-      <v-flex xs3>
-        <licenseplates></licenseplates>
-      </v-flex>
-      <v-flex xs9>
-        <mapbox-map :movements="movements"></mapbox-map>
-      </v-flex>
-    </v-layout>
-    <!-- <v-navigation-drawer
-                permanent
-                v-model="drawer"
-                :clipped="$vuetify.breakpoint.lgAndUp"
-                fixed
-                app                width="400px"
-
-
-        >
-           
-        </v-navigation-drawer>
-
-        
-
-    <router-view></router-view>-->
+    <v-content>
+      <v-layout fill-height>
+        <v-flex xs4>
+          <licenseplates></licenseplates>
+        </v-flex>
+        <v-flex xs8>
+          <mapbox-map :movements="movements"></mapbox-map>
+        </v-flex>
+      </v-layout>
+    </v-content>
   </v-app>
 </template>
 
@@ -81,6 +68,9 @@ export default {
 .politielogo {
   width: 100px;
   height: 70px;
+}
+.fillheight {
+  height: 100%;
 }
 </style>
 

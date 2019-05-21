@@ -1,5 +1,5 @@
 <template>
-  <div class="fullscreen">
+  <div class="fillheight">
     <div class="fullscreen" id="map"></div>
   </div>
 </template>

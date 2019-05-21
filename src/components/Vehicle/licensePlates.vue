@@ -125,7 +125,7 @@ export default {
 }
 
 .LicenseplateList {
-  height: 300px;
+  height: 200px;
   overflow-y: auto;
 }
 </style>

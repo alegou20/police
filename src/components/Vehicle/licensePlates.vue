@@ -50,25 +50,31 @@ export default {
     },
     methods:{
         getStolenVehicle(){
-                if(this.licencePlate){
-                    this.$store.dispatch("getStolenVehicle", {licencePlate: this.licencePlate}).then(res => {
-                        this.OneVehicle = res.data
-                    })
-                }
-                else{
-                    alert('no licenseplate selected')
-                }
-            },
-            getAllLicencePlates(){
-                this.$store.dispatch("getAllLicensePlates").then(res => {
-                    this.items = res.data
+            if(this.licencePlate){
+                this.$store.dispatch("getStolenVehicle", {licencePlate: this.licencePlate}).then(res => {
+                    this.OneVehicle = res.data;
+                    this.getMovements(res.data.carTracker.id)
                 })
-            },
-            setLicencePlate(plate){
-                this.licencePlate = plate
-                this.getStolenVehicle()
+            }
+            else{
+                alert('no licenseplate selected')
+            }
+        },
+        getAllLicencePlates(){
+            this.$store.dispatch("getAllLicensePlates").then(res => {
+                this.items = res.data
+            })
+        },
+        setLicencePlate(plate){
+            this.licencePlate = plate
+            this.getStolenVehicle()
+        },
+        getMovements(carTrackerId) {
+            if (!carTrackerId) return;
+
+            this.$store.dispatch('getMovements', carTrackerId);
         }
-    }
+    },
 };
 </script>
 

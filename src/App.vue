@@ -1,8 +1,9 @@
 <template>
   <v-app id="inspire">
     <v-toolbar color="white" app flat>
-
-            <v-text-field name="licensePlate" label="Mark as stolen" v-model="licensePlate" type="licencePlate" required></v-text-field>
+        <img  class="politieimage" :src="image"/>
+        <v-spacer></v-spacer>
+            <v-text-field class="ml-5" name="licensePlate" label="Mark as stolen" v-model="licensePlate" type="text" required></v-text-field>
             <v-btn round color="primary"  @click="toSave">save</v-btn>
 
             <v-spacer></v-spacer>
@@ -11,14 +12,13 @@
 
         </v-toolbar>
 
-        <router-view></router-view>
     <v-content>
       <v-layout fill-height>
         <v-flex xs4>
-          <licenseplates></licenseplates>
+          <license-plates></license-plates>
         </v-flex>
         <v-flex xs8>
-          <mapbox-map :movements="movements"></mapbox-map>
+          <mapbox-map></mapbox-map>
         </v-flex>
       </v-layout>
     </v-content>
@@ -26,30 +26,29 @@
 </template>
 
 <script>
+    import MapboxMap from '@/components/MapboxMap'
+    import LicensePlates from '@/components/Vehicle/licensePlates'
+    import image from '@/assets/politie-logo.png'
+    import logo from '@/assets/logo.png'
+
 export default {
   components: {
     MapboxMap,
-    licenseplates
+      LicensePlates
   },
   data: () => ({
-    movements,
     dialog: false,
     drawer: null,
-    image: image,
-    logo: logo,
-    items: [
-      { icon: "fas fa-map-marker-alt", text: "Map", link: "/" },
-      { icon: "fas fa-car", text: "Vehicle", link: "/licensePlates" },
-      {
-        icon: "fas fa-angry",
-        text: "Mark as stolen",
-        link: "/vehicles/markAsStolen"
-      }
-    ]
+    image,
+    logo,
+      licensePlate: null
   }),
-  props: {
-    source: String
-  }
+
+    methods: {
+        toSave () {
+            this.$store.dispatch("markAsStolen", {licensePlate: this.licensePlate})
+        },
+    },
 };
 </script>
 

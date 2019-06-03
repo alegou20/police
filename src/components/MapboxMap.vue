@@ -11,7 +11,6 @@ import mapboxgl from "mapbox-gl/dist/mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 
 export default {
-  props: ["movements"],
   data() {
     return {
       axiosDirections: null,
@@ -32,6 +31,11 @@ export default {
       // movements
     };
   },
+  computed: {
+    movements() {
+      return this.$store.getters.movements
+    }
+  },
   methods: {
     /**
      * Draws a route on the map, based on a list of coords
@@ -39,8 +43,7 @@ export default {
     drawRoute(movements) {
       // remove old route
       this.removeRoute();
-
-      let coordinates = movements.map(x => x.coordinate);
+      let coordinates = movements.map(x => [x.coordinate.x, x.coordinate.y]);
 
       this.map.addLayer({
         id: "currentRoute",

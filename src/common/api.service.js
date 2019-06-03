@@ -7,16 +7,14 @@ const ApiService = {
   init() {
     Vue.use(VueAxios, axios);
     Vue.axios.defaults.baseURL = API_URL;
+    Vue.axios.defaults.headers.common[ "x-api"] = '1'
   },
 
   get(resource, slug = "") {
 
-    // return Vue.axios.get(`${resource}/${slug}`).catch(error => {
-    //   throw new Error(`[RWV] ApiService ${error}`);
-    // });
-
-    let items = ["AA-BB-VV", "77-FF-23", "DC-678-A","77-aa-21", "99-BB-45", "HH-FF-03","AA-BB-VV", "77-FF-23", "DC-678-A","77-aa-21", "99-BB-45", "HH-FF-03"];
-    return items
+    return Vue.axios.get(`${resource}/${slug}`).catch(error => {
+      throw new Error(`[RWV] ApiService ${error}`);
+    });
   },
 
   post(resource, params) {

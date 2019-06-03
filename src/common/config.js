@@ -7,5 +7,5 @@
 //
 // export default API_URL
 
-export const API_URL = "http://localhost:8081/BillAdministration/";
+export const API_URL = "http://192.168.25.101:8080/BillAdministration/";
 export default API_URL;

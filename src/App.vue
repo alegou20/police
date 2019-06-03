@@ -23,11 +23,8 @@
 
             <v-spacer></v-spacer>
 
-                <v-text-field
-                        label="Mark as stolen"
-                        single-line
-                ></v-text-field>
-            <v-btn color="success">save</v-btn>
+            <v-text-field name="licensePlate" label="Mark as stolen" v-model="licensePlate" type="licencePlate" required></v-text-field>
+            <v-btn round color="primary"  @click="toSave">save</v-btn>
 
             <v-spacer></v-spacer>
 
@@ -46,12 +43,13 @@
 
         export default {
         components: {
-            licenseplates,
+            licenseplates
         },
         data: () => ({
             dialog: false,
             drawer: null,
             image: image,
+            licensePlate: '',
             logo: logo,
             items: [
                 { icon: 'fas fa-map-marker-alt', text: 'Map', link: '/' },
@@ -61,7 +59,13 @@
         }),
         props: {
             source: String
-        }
+        },
+            methods: {
+                toSave () {
+                    alert('tsvsdfgdfgdfgdfg')
+                    this.$store.dispatch("markAsStolen", {licensePlate: this.licensePlate})
+                },
+            },
     };
 </script>
 

@@ -14,19 +14,14 @@ export default {
     },
     actions: {
         markAsStolen(context, payload) {
-            return ApiService.put("vehicles/stolen", {
-                licensePlate: payload.licensePlate,
-                stolen: payload.stolen
+            return ApiService.put("vehicle/stolen", {
+                licensePlate: payload.licensePlate
             });
         },
         getAllLicensePlates(){
-            return ApiService.get("licenseplates");
+            return ApiService.get("vehicle/licenceplates");
         },
-
         getStolenVehicle(context, payload) {
-            return ApiService.get("vehicles/stolen", {
-                licensePlate: payload.licensePlate,
-            });
-        },
+        return ApiService.get(`${'vehicle'}/${payload.licencePlate}`)}
     }
 }

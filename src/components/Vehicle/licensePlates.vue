@@ -3,18 +3,19 @@
         <v-flex >
             <v-card width="100%">
                 <v-toolbar color="white" flat>
-                    <v-toolbar-title color="primary"><strong class="indigo--text text--darken-3">License plates</strong></v-toolbar-title>
+                    <v-toolbar-title color="primary"><strong class="red--text text--darken-3">Stolen License plates</strong></v-toolbar-title>
 
                 </v-toolbar>
 
-                <v-list class="LicenseplateList">
+                <v-list class="LicenceplateList">
 
                     <template v-for="(item, index) in items">
 
                         <v-list-tile
+                                class="ml-2 mr-2"
                                 :key="item + index"
-                                @click="setLicensePlate(item)"
-                                :class="{'active': item === licenseplate}"
+                                @click="setLicencePlate(item)"
+                                :class="{'active': item === licencePlate}"
 
                         >
                             <v-list-tile-content><strong class="indigo--text text--darken-3">{{ item }}</strong></v-list-tile-content>
@@ -23,8 +24,7 @@
                 </v-list>
             </v-card>
 
-
-                <vehicle v-if="vehicle" :vehicle="vehicle"></vehicle>
+                <vehicle v-if="OneVehicle" :vehicle="OneVehicle"></vehicle>
 
         </v-flex>
     </v-layout>
@@ -39,84 +39,32 @@
         },
         data () {
             return {
-                licenseplate: '',
+                licencePlate: '',
                 items: [],
-                vehicle: {
-                    "carTracker":{
-                        "deleted":false,
-                        "hardware":"asdas",
-                        "id":19,
-                        "mileage":0
-                    },
-                    "carTrackers":[
-                        {
-                            "deleted":false,
-                            "hardware":"123",
-                            "id":2,
-                            "mileage":0
-                        },
-                        {
-                            "deleted":false,
-                            "hardware":"i5",
-                            "id":8,
-                            "mileage":0
-                        },
-                        {
-                            "deleted":false,
-                            "hardware":"asdas",
-                            "id":19,
-                            "mileage":0
-                        }
-                    ],
-                    "id":9,
-                    "licencePlate":"xxxxx4",
-                    "ownerCredentials":[
-                        {
-                            "accountRider":false,
-                            "address":"tyest 1, 5709MB, Helmond",
-                            "begin":"2019-04-17T12:14:42.278Z[UTC]",
-                            "beginFormatted":"2019-04-17 02:14:42",
-                            "city":"Helmond",
-                            "endFormatted":"2019-04-17 02:14:42",
-                            "houseNumber":1,
-                            "id":12,
-                            "name":"Sander Hooff",
-                            "postalCode":"5709MB",
-                            "streetName":"tyest"
-                        }
-                    ],
-                    "rateCategory":{
-                        "id":1,
-                        "name":"45",
-                        "price":3.0,
-                        "vehicles":[
-
-                        ]
-                    },
-                    "stolen":false
-                }
+                OneVehicle: '',
             }
         },
         mounted(){
-            this.getAllLicensePlates()
+            this.getAllLicencePlates()
         },
         methods:{
             getStolenVehicle(){
-                if(this.licenseplate){
-                    // this.vehicle = this.$store.dispatch("getStolenVehicle", {licensePlate: this.licensePlate}
-                    return this.vehicle;
+                if(this.licencePlate){
+                    this.$store.dispatch("getStolenVehicle", {licencePlate: this.licencePlate}).then(res => {
+                        this.OneVehicle = res.data
+                    })
                 }
                 else{
                     alert('no licenseplate selected')
                 }
             },
-            getAllLicensePlates(){
+            getAllLicencePlates(){
                     this.$store.dispatch("getAllLicensePlates").then(res => {
-                        this.items = res
+                        this.items = res.data
                     })
             },
-            setLicensePlate(plate){
-                this.licenseplate = plate
+            setLicencePlate(plate){
+                this.licencePlate = plate
                 this.getStolenVehicle()
             }
         }

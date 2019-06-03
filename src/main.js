@@ -10,12 +10,6 @@ import moment from 'moment'
 import Loader from '@/components/Loader'
 Vue.component('loader', Loader)
 
-// import Vehicle from '@/components/Vehicle/Vehicle'
-// Vue.component('vehicle', Vehicle)
-//
-// import OwnerCredential from '@/components/OwnerCredential/OwnerCredential'
-// Vue.component('owner-credential', OwnerCredential)
-
 import ApiService from "./common/api.service";
 
 ApiService.init();
@@ -30,7 +24,7 @@ Vue.filter('date', function (value) {
 Vue.config.productionTip = false
 
 new Vue({
-  router,
+  // router,
   store,
   render: h => h(App)
 }).$mount('#app')

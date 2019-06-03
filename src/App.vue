@@ -1,27 +1,6 @@
 <template>
-    <v-app id="inspire">
-        <v-navigation-drawer
-                permanent
-                v-model="drawer"
-                :clipped="$vuetify.breakpoint.lgAndUp"
-                fixed
-                app                width="400px"
-
-
-        >
-           <licenseplates></licenseplates>
-        </v-navigation-drawer>
-
-        <v-toolbar
-                :clipped-left="$vuetify.breakpoint.lgAndUp"
-                color="white"
-                app
-                fixed
-                flat
-        >
-            <img  class="politieimage" :src="image"/>
-
-            <v-spacer></v-spacer>
+  <v-app id="inspire">
+    <v-toolbar color="white" app flat>
 
             <v-text-field name="licensePlate" label="Mark as stolen" v-model="licensePlate" type="licencePlate" required></v-text-field>
             <v-btn round color="primary"  @click="toSave">save</v-btn>
@@ -33,50 +12,58 @@
         </v-toolbar>
 
         <router-view></router-view>
-    </v-app>
+    <v-content>
+      <v-layout fill-height>
+        <v-flex xs4>
+          <licenseplates></licenseplates>
+        </v-flex>
+        <v-flex xs8>
+          <mapbox-map :movements="movements"></mapbox-map>
+        </v-flex>
+      </v-layout>
+    </v-content>
+  </v-app>
 </template>
 
 <script>
-    import image from '@/assets/politie-logo.png'
-    import logo from '@/assets/logo.png'
-    import licenseplates from '@/components/Vehicle/licensePlates'
-
-        export default {
-        components: {
-            licenseplates
-        },
-        data: () => ({
-            dialog: false,
-            drawer: null,
-            image: image,
-            licensePlate: '',
-            logo: logo,
-            items: [
-                { icon: 'fas fa-map-marker-alt', text: 'Map', link: '/' },
-                { icon: 'fas fa-car', text: 'Vehicle', link: '/licensePlates' },
-                { icon: 'fas fa-angry', text: 'Mark as stolen', link: '/vehicles/markAsStolen' },
-            ],
-        }),
-        props: {
-            source: String
-        },
-            methods: {
-                toSave () {
-                    alert('tsvsdfgdfgdfgdfg')
-                    this.$store.dispatch("markAsStolen", {licensePlate: this.licensePlate})
-                },
-            },
-    };
+export default {
+  components: {
+    MapboxMap,
+    licenseplates
+  },
+  data: () => ({
+    movements,
+    dialog: false,
+    drawer: null,
+    image: image,
+    logo: logo,
+    items: [
+      { icon: "fas fa-map-marker-alt", text: "Map", link: "/" },
+      { icon: "fas fa-car", text: "Vehicle", link: "/licensePlates" },
+      {
+        icon: "fas fa-angry",
+        text: "Mark as stolen",
+        link: "/vehicles/markAsStolen"
+      }
+    ]
+  }),
+  props: {
+    source: String
+  }
+};
 </script>
 
 <style lang="scss">
-    .politieimage {
-        width: 135px;
-        height: 55px;
-    }
-    .politielogo {
-        width: 100px;
-        height: 70px;
-    }
+.politieimage {
+  width: 135px;
+  height: 55px;
+}
+.politielogo {
+  width: 100px;
+  height: 70px;
+}
+.fillheight {
+  height: 100%;
+}
 </style>
 

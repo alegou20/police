@@ -157,9 +157,9 @@ export default {
   watch: {
     movements(movements) {
       if (movements) {
-        this.drawRoute(movements);
-      } else {
-        this.removeRoute();
+        this.initMap().then(() => {
+          this.drawRoute(movements);
+        });
       }
     }
   },

@@ -45,8 +45,20 @@ export default {
   }),
 
     methods: {
-        toSave () {
-            this.$store.dispatch("markAsStolen", {licensePlate: this.licensePlate})
+        async toSave () {
+            try {
+                let res = await this.$store.dispatch("markAsStolen", {licencePlate: this.licensePlate});
+                if (res.data === false) alert('Vehicle not found');
+                else  {
+                    this.$store.dispatch("getAllLicensePlates");
+                    this.licensePlate = null;
+                }
+
+
+            } catch (e) {
+                console.log(e)
+                alert('Vehicle not found');
+            }
         },
     },
 };

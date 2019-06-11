@@ -10,7 +10,7 @@
 
                 <v-list class="LicenceplateList">
 
-                    <template v-for="(item, index) in items">
+                    <template v-for="(item, index) in licensePlates">
 
                         <v-list-tile
                                 class="ml-2 mr-2"
@@ -25,7 +25,7 @@
                 </v-list>
             </v-card>
 
-                <vehicle v-if="OneVehicle" :vehicle="OneVehicle"></vehicle>
+                <vehicle v-if="OneVehicle" :v="OneVehicle"></vehicle>
 
         </v-flex>
     </v-layout>
@@ -45,6 +45,11 @@ export default {
             OneVehicle: '',
         }
     },
+    computed: {
+          licensePlates () {
+              return this.$store.getters.licensePlates
+          }
+    },
     mounted(){
         this.getAllLicencePlates()
     },
@@ -61,9 +66,7 @@ export default {
             }
         },
         getAllLicencePlates(){
-            this.$store.dispatch("getAllLicensePlates").then(res => {
-                this.items = res.data
-            })
+            this.$store.dispatch("getAllLicensePlates");
         },
         setLicencePlate(plate){
             this.licencePlate = plate
